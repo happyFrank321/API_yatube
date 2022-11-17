@@ -1,5 +1,3 @@
-from django.db.models import manager
-
 from posts.models import Post, Comment
 from rest_framework import serializers
 
@@ -14,7 +12,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.username')
-    comments = CommentSerializer(many=True, allow_null=True)
+    comments = CommentSerializer(many=True, required=False, allow_null=True)
 
     class Meta:
         model = Post
